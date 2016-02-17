@@ -71,6 +71,7 @@ func main() {
 	if token := c.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
 	}
+	// _ = "breakpoint"
 	fmt.Println("MQTT Connection established")
 
 	c.Subscribe("/go-mqtt/sample", 0, nil)
