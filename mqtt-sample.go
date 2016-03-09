@@ -1,9 +1,7 @@
 package main
 
-import (
-	"io/ioutil"
-	"time"
-)
+import "io/ioutil"
+
 import "fmt"
 import "crypto/tls"
 import "crypto/x509"
@@ -76,16 +74,23 @@ func main() {
 
 	c.Subscribe("/go-mqtt/sample", 0, nil)
 
-	i := 0
-	for _ = range time.Tick(time.Duration(1) * time.Second) {
-		if i == 5 {
-			break
+	// i := 0
+	// for _ = range time.Tick(time.Duration(1) * time.Second) {
+	// 	if i == 5 {
+	// 		break
+	// 	}
+	// 	text := fmt.Sprintf("msg:This is message from go %d", i)
+
+	jsonData := `
+		{
+		"msg": "Neel Mitra from Go"
 		}
-		text := fmt.Sprintf("MessageID:%d, payload:This is message!", i)
-		c.Publish("/go-mqtt/sample", 0, false, text)
-		//fmt.Printf("Message published #%d! \n", i)
-		i++
-	}
+		`
+	fmt.Println("Message published to the topic")
+	c.Publish("/go-mqtt/sample", 0, false, jsonData)
+	//fmt.Printf("Message published #%d! \n", i)
+	//	i++
+	//}
 
 	c.Disconnect(250)
 }
