@@ -16,7 +16,7 @@ func main() {
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
 
 	work := func() {
-		gobot.On(sensorl.Event("data"), func(data interface{}) {
+		gobot.On(sensorl.Event("data"), func(data string) {
 			fmt.Println("current temp (c): ", sensort.Temperature())
 			fmt.Println("sensorl", data)
 		})
