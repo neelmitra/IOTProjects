@@ -8,6 +8,7 @@
     <SOURCES />
     <excluded>
       <root url="file://$PROJECT_DIR$/../neel-projects/.git" />
+      <root url="file://$PROJECT_DIR$/../../hybridgroup/gobot/.idea" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/net/html/testdata" />
       <root url="file://$PROJECT_DIR$" />
       <root url="file://$PROJECT_DIR$/.idea" />

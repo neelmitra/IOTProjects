@@ -5,7 +5,13 @@ import "io/ioutil"
 import "fmt"
 import "crypto/tls"
 import "crypto/x509"
-import MQTT "git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.golang.git"
+import (
+	MQTT "git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.golang.git"
+	"github.com/hybridgroup/gobot"
+	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+	"github.com/hybridgroup/gobot/platforms/gpio"
+	"time"
+)
 
 func NewTLSConfig() *tls.Config {
 	// Import trusted certificates from CAfile.pem.
@@ -74,12 +80,28 @@ func main() {
 
 	c.Subscribe("/go-mqtt/sample", 0, nil)
 
-	// i := 0
-	// for _ = range time.Tick(time.Duration(1) * time.Second) {
-	// 	if i == 5 {
-	// 		break
-	// 	}
-	// 	text := fmt.Sprintf("msg:This is message from go %d", i)
+	// Gobot initiation
+	gbot := gobot.NewGobot()
+	board := edison.NewEdisonAdaptor("board")
+	sensorl := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
+	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
+
+	work := func() {
+		gobot.Every(500*time.Millisecond, func() {
+			fmt.Println("current temp (c): ", sensort.Temperature())
+			fmt.Println("current light : ", sensorl.Event("data"))
+		})
+	}
+
+	robot := gobot.NewRobot("sensorBot",
+		[]gobot.Connection{board},
+		[]gobot.Device{sensorl,sensort},
+		work,
+	)
+
+	gbot.AddRobot(robot)
+
+	gbot.Start()
 
 	jsonData := `
 		{
@@ -88,9 +110,7 @@ func main() {
 		`
 	fmt.Println("Message published to the topic")
 	c.Publish("/go-mqtt/sample", 0, false, jsonData)
-	//fmt.Printf("Message published #%d! \n", i)
-	//	i++
-	//}
+
 
 	c.Disconnect(250)
 }
