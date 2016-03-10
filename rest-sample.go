@@ -17,7 +17,7 @@ func main() {
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
 
 	work := func() {
-		gobot.Every(500*time.Millisecond, func() {
+		gobot.On(sensorl.Event("data"), func(data interface{}) {
 			fmt.Println("current temp (c): ", sensort.Temperature())
 			fmt.Println("current light : ", sensorl.Event("data"))
 		})
