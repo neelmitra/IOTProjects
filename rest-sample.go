@@ -12,22 +12,19 @@ func main() {
 	gbot := gobot.NewGobot()
 
 	board := edison.NewEdisonAdaptor("board")
-
-	lsensor := gpio.A0
-	tsensor := gpio.A1
-	//mysensor[0] := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
-	//mysensor[1] := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
+	sensorl := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
+	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
 
 	work := func() {
-		gobot.On {
-			fmt.Println("current temp (c): ", tsensor)
-			fmt.Println("current light intensity", lsensor)
+		gobot.On(sensorl.Event("data"), func(data interface{}) {
+			fmt.Println("current temp (c): ", sensort.Temperature())
+			fmt.Println("sensorl", data)
 		})
 	}
 
 	robot := gobot.NewRobot("sensorBot",
 		[]gobot.Connection{board},
-		[]gobot.Device{lsensor,tsensor},
+		[]gobot.Device{sensorl, sensort},
 		work,
 	)
 
