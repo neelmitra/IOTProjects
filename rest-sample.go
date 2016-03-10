@@ -18,7 +18,7 @@ func main() {
 	work := func() {
 		gobot.On(sensorl.Event("data"), func(data interface{}) {
 			fmt.Println("current temp (c): ", sensort.Temperature())
-			fmt.Println("sensorl", string(data))
+			fmt.Println("sensorl", data)
 		})
 	}
 
