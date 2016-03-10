@@ -39,8 +39,8 @@
       <file leaf-file-name="rest-sample.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest-sample.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8097686">
-              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.3470437">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
               <folding>
                 <element signature="e#14#170#0" expanded="true" />
               </folding>
@@ -339,8 +339,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest-sample.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8097686">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.3470437">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
           <folding>
             <element signature="e#14#170#0" expanded="true" />
           </folding>
