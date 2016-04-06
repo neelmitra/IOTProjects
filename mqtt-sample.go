@@ -11,6 +11,7 @@ import (
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"time"
+	"encoding/json"
 )
 
 func NewTLSConfig() *tls.Config {
@@ -86,12 +87,33 @@ func main() {
 	sensorl := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
 
+	// Struct to hold sensor data
+	type Sensord struct {
+		temperature string `json:"temperature"`
+		lightsens string `json:"light"`
+	}
 	work := func() {
 		gobot.Every(500*time.Millisecond, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
 			fmt.Println("current light : ", sensorl.Event("data"))
+
+			//Update the struct with sensor data from respective variables
+			res1Z := &Sensord{
+				temperature:   sensort.Temperature(),
+				lightsens: sensorl.Event("data")}
+
+			jData, err := json.Marshal(res1Z)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+
+			fmt.Println(string(jData))
+
+			fmt.Println("Message published to the topic")
+			c.Publish("/go-mqtt/sample", 0, false, jData)
+			c.Disconnect(250)
 		})
-	}
 
 	robot := gobot.NewRobot("sensorBot",
 		[]gobot.Connection{board},
@@ -103,14 +125,5 @@ func main() {
 
 	gbot.Start()
 
-	jsonData := `
-		{
-		"msg": "Neel Mitra from Go"
-		}
-		`
-	fmt.Println("Message published to the topic")
-	c.Publish("/go-mqtt/sample", 0, false, jsonData)
-
-
-	c.Disconnect(250)
+	}
 }
