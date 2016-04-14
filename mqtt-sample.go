@@ -92,7 +92,7 @@ func main() {
 	// Struct to hold sensor data
 	type Sensord struct {
 		Temp  string `json:"temperature"`
-		Light string `json:"light"`
+		Light `json:"light"`
 	}
 
 	work := func() {
@@ -104,8 +104,8 @@ func main() {
 		})
 		//Update the struct with sensor data from respective variables
 		res1Z := Sensord{
-			temperature: sensort.Temperature(),
-			lightsens:   sensorl.Event("data"),
+			Temp:  sensort.Temperature(),
+			Light: sensorl.Event("data"),
 		}
 
 		jData, err := json.Marshal(res1Z)
