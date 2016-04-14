@@ -6,14 +6,16 @@ import "fmt"
 import "crypto/tls"
 import "crypto/x509"
 import (
+	"encoding/json"
+	"time"
+
 	MQTT "git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.golang.git"
 	"github.com/hybridgroup/gobot"
-	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 	"github.com/hybridgroup/gobot/platforms/gpio"
-	"time"
-	"encoding/json"
+	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 )
 
+//NewTLSConfig SSL config for MQTT
 func NewTLSConfig() *tls.Config {
 	// Import trusted certificates from CAfile.pem.
 	// Alternatively, manually add CA certificates to
@@ -84,40 +86,46 @@ func main() {
 	// Gobot initiation
 	gbot := gobot.NewGobot()
 	board := edison.NewEdisonAdaptor("board")
-	sensorl := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
+	sensorl := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
 
 	// Struct to hold sensor data
 	type Sensord struct {
-		temperature string `json:"temperature"`
-		lightsens string `json:"light"`
+		Temp  string `json:"temperature"`
+		Light string `json:"light"`
 	}
+
 	work := func() {
-		gobot.Every(500*time.Millisecond, func() {
+		gobot.Every(1*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
-			fmt.Println("current light : ", sensorl.Event("data"))
-
-			//Update the struct with sensor data from respective variables
-			res1Z := &Sensord{
-				temperature:   sensort.Temperature(),
-				lightsens: sensorl.Event("data")}
-
-			jData, err := json.Marshal(res1Z)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-
-			fmt.Println(string(jData))
-
-			fmt.Println("Message published to the topic")
-			c.Publish("/go-mqtt/sample", 0, false, jData)
-			c.Disconnect(250)
 		})
+		gobot.On(sensor.Event("data"), func(data interface{}) {
+			fmt.Println("sensor", data)
+		})
+		//Update the struct with sensor data from respective variables
+		res1Z := Sensord{
+			temperature: sensort.Temperature(),
+			lightsens:   sensorl.Event("data"),
+		}
+
+		jData, err := json.Marshal(res1Z)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		// Convert bytes to string.
+		s := string(jData)
+		fmt.Println(s)
+
+		fmt.Println("Message published to the topic")
+		c.Publish("/go-mqtt/sample", 0, false, s)
+		c.Disconnect(250)
+	}
 
 	robot := gobot.NewRobot("sensorBot",
 		[]gobot.Connection{board},
-		[]gobot.Device{sensorl,sensort},
+		[]gobot.Device{sensorl, sensort},
 		work,
 	)
 
@@ -125,5 +133,4 @@ func main() {
 
 	gbot.Start()
 
-	}
 }
