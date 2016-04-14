@@ -99,7 +99,7 @@ func main() {
 		gobot.Every(1*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
 		})
-		gobot.On(sensor.Event("data"), func(data interface{}) {
+		gobot.On(sensorl.Event("data"), func(data interface{}) {
 			fmt.Println("sensor", data)
 		})
 		//Update the struct with sensor data from respective variables
