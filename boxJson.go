@@ -28,6 +28,6 @@ func main() {
 	// ... Ignore errors.
 	b, _ := json.Marshal(box)
 	// Convert bytes to string.
-	//	s := string(b)
-	fmt.Println(string(b))
+	s := string(b)
+	fmt.Println(s)
 }
