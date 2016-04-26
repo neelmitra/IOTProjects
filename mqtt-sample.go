@@ -89,6 +89,7 @@ func main() {
 	board := edison.NewEdisonAdaptor("board")
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "tempsensor", "0")
 	screen := i2c.NewGroveLcdDriver(board, "screen")
+
 	// Struct to hold sensor data
 	type Sensord struct {
 		Temp float64 `json:"temperature"`
@@ -101,7 +102,7 @@ func main() {
 			screen.SetRGB(255,0,0)
 
 			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
-			//screen.Write("Temperature now is not known !!")
+			screen.Write("Temperature now is not known !!")
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
@@ -127,7 +128,7 @@ func main() {
 
 	robot := gobot.NewRobot("sensorBot",
 		[]gobot.Connection{board},
-		[]gobot.Device{sensort},
+		[]gobot.Device{sensort,screen},
 		work,
 	)
 
