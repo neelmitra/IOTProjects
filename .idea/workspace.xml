@@ -26,8 +26,8 @@
       <file leaf-file-name="mqtt-sample.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mqtt-sample.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.635605">
-              <caret line="129" column="37" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.8859527">
+              <caret line="134" column="46" selection-start-line="134" selection-start-column="35" selection-end-line="134" selection-end-column="50" />
               <folding>
                 <element signature="e#14#386#0" expanded="true" />
               </folding>
@@ -528,8 +528,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mqtt-sample.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.635605">
-          <caret line="129" column="37" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.8859527">
+          <caret line="134" column="46" selection-start-line="134" selection-start-column="35" selection-end-line="134" selection-end-column="50" />
           <folding>
             <element signature="e#14#386#0" expanded="true" />
           </folding>
