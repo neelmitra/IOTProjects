@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0120f791-e157-433c-b629-7937cdd3594e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mqtt-sample.go" afterPath="$PROJECT_DIR$/mqtt-sample.go" />
     </list>
     <ignored path="IOTProjects.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="mqtt-sample.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mqtt-sample.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43671766">
-              <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.39499304">
+              <caret line="112" column="48" selection-start-line="112" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding>
                 <element signature="e#14#389#0" expanded="true" />
               </folding>
@@ -520,8 +519,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mqtt-sample.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43671766">
-          <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.39499304">
+          <caret line="112" column="48" selection-start-line="112" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
             <element signature="e#14#389#0" expanded="true" />
           </folding>
