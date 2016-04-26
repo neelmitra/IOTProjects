@@ -22,14 +22,14 @@ func NewTLSConfig() *tls.Config {
 	// default openssl CA bundle.
 	certpool := x509.NewCertPool()
 	fmt.Println("Importing RootCA file")
-	pemCerts, err := ioutil.ReadFile("c:/samplecerts/rootCA.pem")
+	pemCerts, err := ioutil.ReadFile("/home/root/certs/rootCA.pem")
 	if err == nil {
 		certpool.AppendCertsFromPEM(pemCerts)
 	}
 
 	// Import client certificate/key pair
 	fmt.Println("Importing Client certs")
-	cert, err := tls.LoadX509KeyPair("c:/samplecerts/keycert.pem", "c:/samplecerts/privatekey.pem")
+	cert, err := tls.LoadX509KeyPair("/home/root/certs/keycert.pem", "/home/root/certs/privatekey.pem")
 	if err != nil {
 		panic(err)
 	}
