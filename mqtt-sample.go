@@ -13,7 +13,6 @@ import (
 	"github.com/hybridgroup/gobot"
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
-	"github.com/hybridgroup/gobot/platforms/i2c"
 )
 
 //NewTLSConfig SSL config for MQTT
@@ -88,7 +87,7 @@ func main() {
 	gbot := gobot.NewGobot()
 	board := edison.NewEdisonAdaptor("board")
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "tempsensor", "0")
-	screen := i2c.NewGroveLcdDriver(board, "screen")
+	// screen := i2c.NewGroveLcdDriver(board, "screen")
 	// Struct to hold sensor data
 	type Sensord struct {
 		Temp float64 `json:"temperature"`
@@ -97,11 +96,11 @@ func main() {
 	work := func() {
 		gobot.After(3*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
-			screen.Write("Thermostat welcomes you")
-			screen.SetRGB(255,0,0)
+			//screen.Write("Thermostat welcomes you")
+			//screen.SetRGB(255,0,0)
 
 			//screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
-			screen.Write("Temperature now is not known !!")
+			//screen.Write("Temperature now is not known !!")
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
