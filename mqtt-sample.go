@@ -107,10 +107,10 @@ func main() {
 			screen.Clear()
 			screen.Home()
 			screen.SetRGB(0,255,0)
-			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
+			//screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
 
 
-			//Update the struct with sensor data from respective variables
+			//Update the struct with sensor data, Jsonify & Convert to string
 			res1Z := Sensord{
 				Temp: sensort.Temperature(),
 			}
@@ -121,13 +121,14 @@ func main() {
 				return
 			}
 
-			// Convert bytes to string & publish to AWS MQTT Broker.
 			s := string(jData)
 
+			// Writes to the LCD Screen & publish to AWS MQTT Broker.
+
 			screen.Write(s)
-			/*gobot.Every(500*time.Millisecond, func() {
+			gobot.Every(1*time.Second, func() {
 				screen.Scroll(false)
-			})*/
+			})
 
 			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
