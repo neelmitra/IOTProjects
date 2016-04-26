@@ -14,6 +14,7 @@ import (
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 	"github.com/hybridgroup/gobot/platforms/i2c"
+	"strconv"
 )
 
 //NewTLSConfig SSL config for MQTT
@@ -66,6 +67,7 @@ var f MQTT.MessageHandler = func(client *MQTT.Client, msg MQTT.Message) {
 }
 
 func main() {
+	//AWS MQTT Broker SSL Configuration
 	tlsconfig := NewTLSConfig()
 	fmt.Println("TLSConfig initiation Completed")
 	opts := MQTT.NewClientOptions()
@@ -96,18 +98,27 @@ func main() {
 	}
 
 	work := func() {
-		gobot.After(3*time.Second, func() {
-			fmt.Println("current temp (c): ", sensort.Temperature())
-			screen.Write("Thermostat welcomes you")
-			screen.SetRGB(255,0,0)
+		screen.Write("Thermostat is working now !!")
+		screen.SetRGB(255, 0, 0)
 
+		gobot.Every(5*time.Second, func() {
+			fmt.Println("current temp (c): ", sensort.Temperature())
+
+			// LCD showing the temperature
+			screen.Clear()
+			screen.Home()
+			screen.SetRGB(0,255,0)
 			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
-			screen.Write("Temperature now is not known !!")
+
+			strTemp := strconv.FormatFloat(sensort.Temperature(),'E',-1,64)
+			screen.Write("goodbye\nTemperature now :" + strTemp)
+			gobot.Every(500*time.Millisecond, func() {
+				screen.Scroll(false)
+			})
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
 				Temp: sensort.Temperature(),
-				//Lght: sensorl.Read(),
 			}
 
 			jData, err := json.Marshal(res1Z)
@@ -116,13 +127,15 @@ func main() {
 				return
 			}
 
-			// Convert bytes to string.
+			// Convert bytes to string & publish to AWS MQTT Broker.
 			s := string(jData)
 			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
 			//c.Disconnect(250)
-			//screen.Home()
-			//screen.SetRGB(0, 0, 255)
+
+			screen.Home()
+			<-time.After(1 * time.Second)
+			screen.SetRGB(0, 0, 255)
 		})
 	}
 
