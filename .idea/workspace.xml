@@ -27,38 +27,8 @@
       <file leaf-file-name="mqtt-sample.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mqtt-sample.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8662614">
-              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="analog_sensor_driver.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/platforms/gpio/analog_sensor_driver.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="grove_temperature_sensor_driver.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/platforms/gpio/grove_temperature_sensor_driver.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="99" column="39" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testmqtt.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testmqtt.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.5440729">
+              <caret line="103" column="41" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -484,14 +454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/platforms/gpio/grove_temperature_sensor_driver.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="39" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/gobot.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.6869301">
@@ -502,16 +464,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/platforms/gpio/analog_sensor_driver.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
+        <state vertical-scroll-proportion="1.0942249">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/platforms/gpio/grove_drivers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62917936">
+          <caret line="88" column="49" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../hybridgroup/gobot/platforms/gpio/grove_temperature_sensor_driver.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68085104">
+          <caret line="99" column="39" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mqtt-sample.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8662614">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5440729">
+          <caret line="103" column="41" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
           <folding />
         </state>
       </provider>
