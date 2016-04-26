@@ -14,6 +14,7 @@ import (
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 	"github.com/hybridgroup/gobot/platforms/i2c"
+	"math"
 )
 
 //NewTLSConfig SSL config for MQTT
@@ -101,7 +102,7 @@ func main() {
 		screen.SetRGB(255, 0, 0)
 
 		gobot.Every(5*time.Second, func() {
-			fmt.Println("current temp (c): ", sensort.Temperature())
+			fmt.Println("current temp (c): ", math.Floor(sensort.Temperature()))
 
 			// LCD showing the temperature
 			screen.Clear()
