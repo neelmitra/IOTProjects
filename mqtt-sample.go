@@ -13,6 +13,7 @@ import (
 	"github.com/hybridgroup/gobot"
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+	"github.com/hybridgroup/gobot/platforms/i2c"
 )
 
 //NewTLSConfig SSL config for MQTT
@@ -86,19 +87,21 @@ func main() {
 	// Gobot initiation
 	gbot := gobot.NewGobot()
 	board := edison.NewEdisonAdaptor("board")
-	sensort := gpio.NewGroveTemperatureSensorDriver(board, "tempsensor", "1")
-	sensorl := gpio.NewGroveLightSensorDriver(board, "lightsensor", "0")
-
+	sensort := gpio.NewGroveTemperatureSensorDriver(board, "tempsensor", "0")
+	screen := i2c.NewGroveLcdDriver(board, "screen")
 	// Struct to hold sensor data
 	type Sensord struct {
 		Temp float64 `json:"temperature"`
-		//Lght int     `json:"light`
 	}
 
 	work := func() {
-		gobot.After(5*time.Second, func() {
+		gobot.After(3*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
-			fmt.Println("current light (): ", sensorl.Pin())
+			screen.Write("Thermostat welcomes you")
+			screen.SetRGB(255,0,0)
+
+			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
+			screen.Write("Temperature now is " + sensort.Temperature())
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
@@ -116,7 +119,9 @@ func main() {
 			s := string(jData)
 			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
-			c.Disconnect(250)
+			//c.Disconnect(250)
+			screen.Home()
+			screen.SetRGB(0, 0, 255)
 		})
 	}
 
