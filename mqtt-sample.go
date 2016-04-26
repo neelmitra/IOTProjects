@@ -135,9 +135,9 @@ func main() {
 			c.Publish("/go-mqtt/sample", 0, false, s)
 			//c.Disconnect(250)
 
-			screen.Home()
-			<-time.After(2 * time.Second)
-			screen.SetRGB(0, 0, 255)
+			//screen.Home()
+			//<-time.After(2 * time.Second)
+			//screen.SetRGB(0, 0, 255)
 		})
 	}
 
