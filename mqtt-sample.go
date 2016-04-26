@@ -127,17 +127,17 @@ func main() {
 			// Writes to the LCD Screen & publish to AWS MQTT Broker.
 
 			screen.Write(s)
-			gobot.Every(1*time.Second, func() {
+			gobot.Every(2*time.Second, func() {
 				screen.Scroll(false)
 			})
 
 			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
-			c.Disconnect(250)
+			//c.Disconnect(250)
 
-			//screen.Home()
-			//<-time.After(1 * time.Second)
-			//screen.SetRGB(0, 0, 255)
+			screen.Home()
+			<-time.After(2 * time.Second)
+			screen.SetRGB(0, 0, 255)
 		})
 	}
 
