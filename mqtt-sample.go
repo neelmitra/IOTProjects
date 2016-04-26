@@ -97,7 +97,7 @@ func main() {
 	}
 
 	work := func() {
-		screen.Write("Thermostat is working now !!")
+		screen.Write("Thermostat is On !!")
 		screen.SetRGB(255, 0, 0)
 
 		gobot.Every(5*time.Second, func() {
@@ -108,7 +108,6 @@ func main() {
 			screen.Home()
 			screen.SetRGB(0,255,0)
 			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
-
 
 
 			//Update the struct with sensor data from respective variables
@@ -126,13 +125,13 @@ func main() {
 			s := string(jData)
 
 			screen.Write(s)
-			gobot.Every(500*time.Millisecond, func() {
+			/*gobot.Every(500*time.Millisecond, func() {
 				screen.Scroll(false)
-			})
+			})*/
 
 			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
-			//c.Disconnect(250)
+			c.Disconnect(250)
 
 			//screen.Home()
 			//<-time.After(1 * time.Second)
