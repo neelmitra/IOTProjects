@@ -98,7 +98,7 @@ func main() {
 	work := func() {
 		gobot.After(5*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
-			fmt.Println("current light (): ", string(sensorl.Read()))
+			fmt.Println("current light (): ", sensorl.Pin())
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
