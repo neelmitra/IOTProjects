@@ -14,6 +14,7 @@ import (
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 	"github.com/hybridgroup/gobot/platforms/i2c"
+	"strconv"
 )
 
 //NewTLSConfig SSL config for MQTT
@@ -101,7 +102,7 @@ func main() {
 			screen.SetRGB(255,0,0)
 
 			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
-			screen.Write("Temperature now is " + sensort.Temperature())
+			screen.Write("Temperature now is " + strconv.FormatFloat(sensort.Temperature(),'E',-1,64))
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
