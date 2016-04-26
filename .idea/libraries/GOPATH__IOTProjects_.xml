@@ -7,28 +7,7 @@
     </CLASSES>
     <SOURCES />
     <excluded>
-      <root url="file://$PROJECT_DIR$/../neel-projects/.git" />
-      <root url="file://$PROJECT_DIR$/../../hybridgroup/gobot/.idea" />
-      <root url="file://$PROJECT_DIR$/../../../golang.org/x/net/html/testdata" />
       <root url="file://$PROJECT_DIR$" />
-      <root url="file://$PROJECT_DIR$/.idea" />
-      <root url="file://$PROJECT_DIR$/../GolangTraining/.git" />
-      <root url="file://$PROJECT_DIR$/../../tarm/goserial/.git" />
-      <root url="file://$PROJECT_DIR$/../../../git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.golang.git/.git" />
-      <root url="file://$PROJECT_DIR$/../GolangTraining/.idea" />
-      <root url="file://$PROJECT_DIR$/../.idea" />
-      <root url="file://$PROJECT_DIR$/../../hybridgroup/go-opencv/.git" />
-      <root url="file://$PROJECT_DIR$/.git" />
-      <root url="file://$PROJECT_DIR$/../../hybridgroup/go-ardrone/.git" />
-      <root url="file://$PROJECT_DIR$/../../../golang.org/x/net/html/charset/testdata" />
-      <root url="file://$PROJECT_DIR$/../../bmizerany/pat/.git" />
-      <root url="file://$PROJECT_DIR$/../../../golang.org/x/net/.git" />
-      <root url="file://$PROJECT_DIR$/../neel-projects/.idea" />
-      <root url="file://$PROJECT_DIR$/../../hybridgroup/gobot/.git" />
-      <root url="file://$PROJECT_DIR$/../../../golang.org/x/net/http2/testdata" />
-      <root url="file://$PROJECT_DIR$/../../hybridgroup/go-sdl2/.git" />
-      <root url="file://$PROJECT_DIR$/../../codegangsta/cli/.git" />
-      <root url="file://$PROJECT_DIR$/../../donovanhide/eventsource/.git" />
     </excluded>
   </library>
 </component>

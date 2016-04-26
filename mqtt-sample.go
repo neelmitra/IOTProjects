@@ -87,45 +87,39 @@ func main() {
 	gbot := gobot.NewGobot()
 	board := edison.NewEdisonAdaptor("board")
 	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
-	sensorl := gpio.NewGroveLightSensorDriver(board, "sensor", "0")
 
 	// Struct to hold sensor data
 	type Sensord struct {
-		Temp  string `json:"temperature"`
-		Light `json:"light"`
+		Temp float64 `json:"temperature"`
 	}
 
 	work := func() {
 		gobot.Every(1*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
+
+			//Update the struct with sensor data from respective variables
+			res1Z := Sensord{
+				Temp: sensort.Temperature(),
+			}
+
+			jData, err := json.Marshal(res1Z)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+
+			// Convert bytes to string.
+			s := string(jData)
+			fmt.Println("The json data to be published in IOT is", s)
+			fmt.Println("Message published to the topic")
+			c.Publish("/go-mqtt/sample", 0, false, s)
+			c.Disconnect(250)
 		})
-		gobot.On(sensorl.Event("data"), func(data interface{}) {
-			fmt.Println("sensor", data)
-		})
-		//Update the struct with sensor data from respective variables
-		res1Z := Sensord{
-			Temp:  sensort.Temperature(),
-			Light: sensorl.Event("data"),
-		}
-
-		jData, err := json.Marshal(res1Z)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		// Convert bytes to string.
-		s := string(jData)
-		fmt.Println(s)
-
-		fmt.Println("Message published to the topic")
-		c.Publish("/go-mqtt/sample", 0, false, s)
-		c.Disconnect(250)
 	}
 
 	robot := gobot.NewRobot("sensorBot",
 		[]gobot.Connection{board},
-		[]gobot.Device{sensorl, sensort},
+		[]gobot.Device{sensort},
 		work,
 	)
 
