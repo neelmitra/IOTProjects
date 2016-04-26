@@ -86,20 +86,24 @@ func main() {
 	// Gobot initiation
 	gbot := gobot.NewGobot()
 	board := edison.NewEdisonAdaptor("board")
-	sensort := gpio.NewGroveTemperatureSensorDriver(board, "sensor", "1")
+	sensort := gpio.NewGroveTemperatureSensorDriver(board, "tempsensor", "1")
+	sensorl := gpio.NewGroveLightSensorDriver(board, "lightsensor", "0")
 
 	// Struct to hold sensor data
 	type Sensord struct {
 		Temp float64 `json:"temperature"`
+		Lght int `json:"light`
 	}
 
 	work := func() {
 		gobot.After(5*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
+			fmt.Println("current light (): ", sensorl.Read())
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
 				Temp: sensort.Temperature(),
+				Lght: sensorl.Read(),
 			}
 
 			jData, err := json.Marshal(res1Z)
@@ -125,6 +129,5 @@ func main() {
 	gbot.AddRobot(robot)
 
 	gbot.Start()
-	gbot.Stop()
 
 }
