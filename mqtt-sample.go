@@ -14,7 +14,6 @@ import (
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
 	"github.com/hybridgroup/gobot/platforms/i2c"
-	"strconv"
 )
 
 //NewTLSConfig SSL config for MQTT
