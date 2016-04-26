@@ -94,7 +94,7 @@ func main() {
 	}
 
 	work := func() {
-		gobot.Every(1*time.Second, func() {
+		gobot.After(5*time.Second, func() {
 			fmt.Println("current temp (c): ", sensort.Temperature())
 
 			//Update the struct with sensor data from respective variables
@@ -110,8 +110,7 @@ func main() {
 
 			// Convert bytes to string.
 			s := string(jData)
-			fmt.Println("The json data to be published in IOT is", s)
-			fmt.Println("Message published to the topic")
+			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
 			c.Disconnect(250)
 		})
@@ -126,5 +125,6 @@ func main() {
 	gbot.AddRobot(robot)
 
 	gbot.Start()
+	gbot.Stop()
 
 }
