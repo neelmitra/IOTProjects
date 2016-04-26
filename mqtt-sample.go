@@ -113,7 +113,7 @@ func main() {
 
 			//Update the struct with sensor data, Jsonify & Convert to string
 			res1Z := Sensord{
-				Temp: sensort.Temperature(),
+				Temp: math.Floor(sensort.Temperature()),
 			}
 
 			jData, err := json.Marshal(res1Z)
