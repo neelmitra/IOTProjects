@@ -101,8 +101,8 @@ func main() {
 			screen.Write("Thermostat welcomes you")
 			screen.SetRGB(255,0,0)
 
-			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
-			screen.Write("Temperature now is " + strconv.FormatFloat(sensort.Temperature(),'E',-1,64))
+			//screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
+			screen.Write("Temperature now is not known !!")
 
 			//Update the struct with sensor data from respective variables
 			res1Z := Sensord{
@@ -121,8 +121,8 @@ func main() {
 			fmt.Println("The json data to be published in IOT topic is", s)
 			c.Publish("/go-mqtt/sample", 0, false, s)
 			//c.Disconnect(250)
-			screen.Home()
-			screen.SetRGB(0, 0, 255)
+			//screen.Home()
+			//screen.SetRGB(0, 0, 255)
 		})
 	}
 
