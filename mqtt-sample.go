@@ -94,7 +94,7 @@ func main() {
 
 	// Struct to hold sensor data
 	type Sensord struct {
-		Temp float64 `json:"temperature"`
+		Temp float64 `json:"temp"`
 	}
 
 	work := func() {
