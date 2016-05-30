@@ -120,9 +120,9 @@ func main() {
 	}
 
 	//certs path initialisation
-	rootCA := "/home/root/certs/rootCA.pem"
-	keyCert := "/home/root/certs/keycert.pem"
-	privateKey := "/home/root/certs/privatekey.pem"
+	rootCA := "/Users/neelmi/Documents/AWS/Certs/rootCA.pem"
+	keyCert := "/Users/neelmi/Documents/AWS/Certs/keycert.pem"
+	privateKey := "/Users/neelmi/Documents/AWS/Certs/privatekey.pem"
 
 	//AWS MQTT Broker SSL Configuration
 	tlsconfig := m.NewTLSConfig(rootCA,keyCert,privateKey)
