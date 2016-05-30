@@ -9,7 +9,7 @@ import (
 	"encoding/json"
 	"time"
 
-	MQTT "org.eclipse.paho.mqtt.golang.git"
+	MQTT "git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.golang.git"
 	"github.com/hybridgroup/gobot"
 	"github.com/hybridgroup/gobot/platforms/gpio"
 	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
