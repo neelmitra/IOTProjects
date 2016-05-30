@@ -110,6 +110,7 @@ func main() {
 		"baseball",
 		"person",
 		"bat",
+		"zombie",
 	}
 
 	err ,label := run(args[0])
